@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+  <configuration>
+	<!-- type  별칭 등록 -->
+	<typeAliases>
+		<typeAlias type="com.inna.spring.users.dto.UsersDto" 
+			alias="usersDto"/>	
+	</typeAliases>
+	
+	<!-- Mapper 등록 -->
+	<mappers>
+		<mapper resource="com/inna/spring/mybatis/UsersMapper.xml"/>
+	</mappers>  
+  </configuration>
