@@ -32,4 +32,18 @@ public class UsersServiceImpl implements UsersService {
 		dao.insert(dto);
 	}
 
+	@Override
+	public void loginProcess(UsersDto dto, ModelAndView mView, HttpSession session) {
+		//dao 객체 이용해서 id, pwd가 유효한 정보인지 여부 얻어내기
+		boolean isValid=dao.isValid(dto);
+		if(isValid) {
+			//유효한 정보라면 로그인 처리
+			session.setAttribute("id", dto.getId());
+			mView.addObject("isSuccess", true);
+		}else {
+			mView.addObject("isSuccess", false);
+		}
+		
+	}
+
 }
