@@ -46,4 +46,12 @@ public class UsersServiceImpl implements UsersService {
 		
 	}
 
+	@Override
+	public void getInfo(HttpSession session, ModelAndView mView) {
+		//로그인된 아이디를 session 객체를 이용해서 얻어온다.
+		String id = (String)session.getAttribute("id");
+		UsersDto dto = dao.getData(id);
+		mView.addObject("dto", dto);
+	}
+
 }

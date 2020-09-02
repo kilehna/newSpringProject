@@ -8,4 +8,6 @@ public interface UsersDao {
 	public void insert(UsersDto dto);
 	//로그인 여부를 판단하기 위한 메소드
 	public boolean isValid(UsersDto dto);
+	//회원정보 조회용 메소드
+	public UsersDto getData(String id);
 }

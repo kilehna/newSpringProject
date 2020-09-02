@@ -12,4 +12,5 @@ public interface UsersService {
 	public Map<String, Object> isExistId(String inputId);
 	public void addUser(UsersDto dto);
 	public void loginProcess(UsersDto dto, ModelAndView mView, HttpSession session);
+	public void getInfo(HttpSession session, ModelAndView mView);
 }
