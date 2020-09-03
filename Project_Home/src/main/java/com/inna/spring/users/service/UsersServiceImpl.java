@@ -54,4 +54,11 @@ public class UsersServiceImpl implements UsersService {
 		mView.addObject("dto", dto);
 	}
 
+	@Override
+	public void updateUser(HttpSession session, UsersDto dto) {
+		String id=(String)session.getAttribute("id");
+		dto.setId(id);
+		dao.update(dto);
+	}
+
 }

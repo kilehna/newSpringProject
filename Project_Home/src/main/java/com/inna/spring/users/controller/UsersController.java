@@ -88,4 +88,25 @@ public class UsersController {
 		mView.setViewName("users/private/info");
 		return mView;
 	}
+	
+	//회원 정보 수정폼 요청 처리
+	@RequestMapping("/users/private/updateform")
+	public ModelAndView updateForm(HttpServletRequest request,
+			ModelAndView mView) {
+		service.getInfo(request.getSession(), mView);
+		mView.setViewName("users/private/updateform");
+		return mView;
+	}
+	
+	//개인 정보 수정 반영 요청 처리
+	@RequestMapping("/users/private/update")
+	public ModelAndView update(HttpServletRequest request, 
+			UsersDto dto, ModelAndView mView) {
+		//service 객체를 이용해서 개인정보를 수정한다.
+		service.updateUser(request.getSession(), dto);
+		//개인 정보 보기 페이지로 리다일렉트 이동한다.
+		mView.setViewName("redirect:/users/private/info.do");
+		return mView;
+	}
+	
 }

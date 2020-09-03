@@ -2,6 +2,7 @@ package com.inna.spring.users.service;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.ModelAndView;
@@ -13,4 +14,5 @@ public interface UsersService {
 	public void addUser(UsersDto dto);
 	public void loginProcess(UsersDto dto, ModelAndView mView, HttpSession session);
 	public void getInfo(HttpSession session, ModelAndView mView);
+	public void updateUser(HttpSession session, UsersDto dto);
 }

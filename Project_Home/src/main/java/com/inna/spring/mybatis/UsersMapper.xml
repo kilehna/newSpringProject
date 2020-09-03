@@ -25,4 +25,10 @@
 		FROM users
 		WHERE id=#{id}
 	</select>
+	
+	<update id="update" parameterType="usersDto">
+		UPDATE users
+		SET email=#{email}, profile=#{profile}
+		WHERE id=#{id}
+	</update>
 </mapper>

@@ -10,4 +10,6 @@ public interface UsersDao {
 	public boolean isValid(UsersDto dto);
 	//회원정보 조회용 메소드
 	public UsersDto getData(String id);
+	//회원정보 수정용 메소드
+	public void update(UsersDto dto);
 }
