@@ -39,91 +39,91 @@
 </div>
 <script src="${pageContext.request.contextPath  }/resources/js/jquery-3.5.1.js"></script>
 <script>
-     //아이디를 검증할 정규 표현식
-     var reg_id=/^[a-z].{4,9}$/;
-     //비밀번호를 검증할 정규 표현식
-     var reg_pwd=/^.{5,10}$/;
-     //이메일을 검증할 정규 표현식
-     var reg_email=/@/;
-     
-     //각각의 input 요소의 유효성 여부
-     var isIdValid=false;
-     var isPwdValid=false;
-     var isEmailValid=false;
-     //폼 전체의 유효성 여부
-     var isFormValid=false;
-     
-     $("#myForm").on("submit", function(){
-          //폼 유효성 여부를 얻어낸다
-          isFormValid=isIdValid && isPwdValid &&  isEmailValid;
-          if(!isFormValid){//만일 폼이 유효하지 않으면
-              return false;//폼 전송 막기
-          }
-     });
-     //아이디를 입력했을때 실행할 함수 등록
-     $("#id").on("input", function(){
-          //입력한 아이디를 읽어온다.
-          var inputId=$("#id").val();
-          //아이디 형식에 맞게 입력했는지 여부
-          var result=reg_id.test(inputId);
-          //일단 두개의 클래스를 제거 하고
-          $(this).removeClass("is-valid is-invalid");
-          if(result){//형식에 맞게 입력 했다면
-              //ajax 를 이용해서 서버에 보낸후 결과를 응답  받는다.
-              $.ajax({
-                   method:"GET",
-                   url:"checkid.do",
-                   data:"inputId="+inputId,
-                   success:function(data){
-                        $(this).removeClass("is-valid  is-invalid");
-                        //data => {isExist:true} or  {isExist:false} 인 object 이다.
-                        if(data.isExist){//이미 존재하는  아이디임으로 사용 불가
-                             isIdValid=false;
-                             $("#id").addClass("is-invalid");
-                        }else{//사용가능
-                             isIdValid=true;
-                             $("#id").addClass("is-valid");
-                        }
-                   }
-              });                
-          }else{//형식에 맞게 입력 하지 않았다면
-              isIdValid=false;
-              $("#id").addClass("is-invalid");
-          }
-     });
-     
-     //비밀번호 입력란 혹은 확인란에 input 이벤트 처리
-     $("#pwd, #pwd2").on("input", function(){
-          //입력한 비밀번호를 읽어온다
-          var inputPwd=$("#pwd").val();
-          var inputPwd2=$("#pwd2").val();
-          //형식에 맞게 입력했는지 여부
-          var result=reg_pwd.test(inputPwd);
-          if(result){//형식에 맞게 입력했다면
-              if(inputPwd==inputPwd2){//비밀번호 확인란과  동일하게 입력했다면
-                   isPwdValid=true;
-                   $("#pwd").addClass("is-valid");
-              }else{//다르게 입력했다면
-                   isPwdValid=false;
-                   $("#pwd").addClass("is-invalid");
-              }
-          }else{//형식에 맞게 입력하지 않았다면
-              $("#pwd").addClass("is-invalid");
-          }
-     });
-     
-     $("#email").on("input", function(){
-          var inputEmail=$("#email").val();
-          //이메일 유효성 여부를 얻어낸다.
-          isEmailValid=reg_email.test(inputEmail);
-          $(this).removeClass("is-valid is-invalid");
-          if(isEmailValid){
-              $(this).addClass("is-valid");
-          }else{
-              $(this).addClass("is-invalid");
-          }
-     });
-     
+	//아이디를 검증할 정규 표현식
+	var reg_id=/^[a-z].{4,9}$/;
+	//비밀번호를 검증할 정규 표현식
+	var reg_pwd=/^.{5,10}$/;
+	//이메일을 검증할 정규 표현식
+	var reg_email=/@/;
+	
+	//각각의 input 요소의 유효성 여부
+	var isIdValid=false;
+	var isPwdValid=false;
+	var isEmailValid=false;
+	//폼 전체의 유효성 여부
+	var isFormValid=false;
+	
+	$("#myForm").on("submit", function(){
+		//폼 유효성 여부를 얻어낸다
+		isFormValid=isIdValid && isPwdValid && isEmailValid;
+		if(!isFormValid){//만일 폼이 유효하지 않으면
+			return false;//폼 전송 막기 
+		}
+	});
+	//아이디를 입력했을때 실행할 함수 등록 
+	$("#id").on("input", function(){
+		//입력한 아이디를 읽어온다.
+		var inputId=$("#id").val();
+		//아이디 형식에 맞게 입력했는지 여부
+		var result=reg_id.test(inputId);
+		//일단 두개의 클래스를 제거 하고 
+		$(this).removeClass("is-valid is-invalid");
+		if(result){//형식에 맞게 입력 했다면
+			//ajax 를 이용해서 서버에 보낸후 결과를 응답 받는다.
+			$.ajax({
+				method:"GET",
+				url:"checkid.do",
+				data:"inputId="+inputId,
+				success:function(data){
+					$(this).removeClass("is-valid is-invalid");
+					//data => {isExist:true} or {isExist:false} 인 object 이다.
+					if(data.isExist){//이미 존재하는 아이디임으로 사용 불가
+						isIdValid=false;
+						$("#id").addClass("is-invalid");
+					}else{//사용가능 
+						isIdValid=true;
+						$("#id").addClass("is-valid");
+					}
+	 			}
+			});				
+		}else{//형식에 맞게 입력 하지 않았다면
+			isIdValid=false;
+			$("#id").addClass("is-invalid");
+		}
+	});
+	//비밀번호 입력란 혹은 비밀번호 확인란 에 input 이벤트 처리 
+	$("#pwd, #pwd2").on("input", function(){
+		//입력한 비밀번호를 읽어온다. 
+		var inputPwd=$("#pwd").val();
+		var inputPwd2=$("#pwd2").val();
+		//형식에 맞게 입력했는지 여부
+		var result=reg_pwd.test(inputPwd);
+		$("#pwd").removeClass("is-valid is-invalid");
+		if(result){//형식에 맞게 입력 했다면
+			if(inputPwd==inputPwd2){//비밀번호 확인란과 동일하게 입력했다면
+				isPwdValid=true;
+				$("#pwd").addClass("is-valid");
+			}else{//확인란과 다르게 입력했다면
+				isPwdValid=false;
+				$("#pwd").addClass("is-invalid");
+			}
+		}else{//형식에 맞게 입력 하지 않았다면
+			isPwdValid=false;
+			$("#pwd").addClass("is-invalid");
+		}
+	});
+	
+	$("#email").on("input", function(){
+		var inputEmail=$("#email").val();
+		//이메일 유효성 여부를 얻어낸다.
+		isEmailValid=reg_email.test(inputEmail);
+		$(this).removeClass("is-valid is-invalid");
+		if(isEmailValid){
+			$(this).addClass("is-valid");
+		}else{
+			$(this).addClass("is-invalid");
+		}
+	});
 </script>
 </body>
 </html>

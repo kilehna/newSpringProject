@@ -20,8 +20,8 @@
 	</select>
 
 	<select id="getData" parameterType="string" resultType="usersDto">
-		SELECT id, pwd, email, profile,
-			TO_CHAR(regdate, 'YY.MM.DD HH24:MI:SS) AS regdate
+		SELECT id,pwd,email,profile,
+			TO_CHAR(regdate, 'YY.MM.DD HH24:MI:SS') AS regdate
 		FROM users
 		WHERE id=#{id}
 	</select>
@@ -31,4 +31,9 @@
 		SET email=#{email}, profile=#{profile}
 		WHERE id=#{id}
 	</update>
+	
+	<delete id="delete" parameterType="string">
+		DELETE FROM users
+		WHERE id=#{id}
+	</delete>
 </mapper>
